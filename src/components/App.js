@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import ChooseMark from './ChooseMark';
+import WhoFirst from './WhoFirst';
+
+import { randomFirstPlayer } from '../helpers';
 
 const Header = styled.div`
   font-family: monospace;
@@ -27,6 +30,26 @@ class App extends Component {
     this.setState({ playerMark, computerMark });
   }
 
+  getFirstTurn = () => {
+    setTimeout(() => {
+      let firstTurn = randomFirstPlayer();
+      let message = (firstTurn === 'player')
+          ? 'Zaczynasz pierwszy'
+          : 'Zaczyna komputer';
+      this.setState({ firstTurn, message });
+      console.log(message);
+    }, 1000);
+  }
+
+  removeMessageAndStartGame = () => {
+    setTimeout(() => {
+      this.setState({
+        message: '',
+        gameIsPlaying: true
+      })
+    }, 1000);
+  }
+
   render() {
     return (
       <div>
@@ -36,6 +59,13 @@ class App extends Component {
         <ChooseMark 
           playerMark={this.state.playerMark}
           chooseMark={this.chooseMark}
+        />
+        <WhoFirst 
+          playerMark={this.state.playerMark}
+          firstTurn={this.state.firstTurn}
+          getFirstTurn={this.getFirstTurn}
+          message={this.state.message}
+          removeMessageAndStartGame={this.removeMessageAndStartGame}
         />
       </div>
     );

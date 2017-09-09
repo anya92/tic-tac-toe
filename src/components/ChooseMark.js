@@ -14,6 +14,7 @@ const Text = styled.div`
 `;
 
 const ChooseMark = ({ playerMark, chooseMark }) => {
+  // render only if there is no playerMark yet
   if (playerMark) return <div></div>;
   return (
     <div>
