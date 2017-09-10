@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Text = styled.div`
-  
+  font-size: 2.5rem;
+  text-align: center;
 `;
 
 const WhoFirst = ({ playerMark, firstTurn, getFirstTurn, message, removeMessageAndStartGame }) => {

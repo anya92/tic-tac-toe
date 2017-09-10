@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import App from './components/App';
-
 import '../node_modules/normalize.css/normalize.css';
+
+import App from './components/App';
 
 import registerServiceWorker from './registerServiceWorker';
 

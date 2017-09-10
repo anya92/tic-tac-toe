@@ -11,26 +11,26 @@ import {
 } from '../helpers';
 
 const GameBoard = styled.div`
-  width: 400px;
-  max-width: ${window.innerWidth}px;
-  height: 400px;
-  max-height: ${window.innerWidth}px;
-  background-color: lightblue;
+  width: 350px;
+  height: 350px;
 `;
 
 const Cell = styled.div`
-  width: calc(100% / 3 - 2px);
-  height: calc(100% / 3 - 2px);
+  width: calc(100% / 3 - 1px);
+  height: calc(100% / 3 - 1px);
   float: left;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 4rem;
   border-right: ${props => [0, 1, 3, 4, 6, 7].includes(props.id) 
-    ? '2px solid black' : 'none'};
+    ? '1px solid black' : 'none'};
   border-bottom: ${props => [0, 1, 2, 3, 4, 5].includes(props.id)
-    ? '2px solid black' : 'none'};
+    ? '1px solid black' : 'none'};
+  &.winning {
+    color: orangered;
+  }  
 `;
 
 class TicTacToe extends Component {
@@ -72,6 +72,10 @@ class TicTacToe extends Component {
           gameIsPlaying: false,
           gameResult: 'Wygrałeś!!!'
         });
+        const winningCombo = getWinningCombo(board);
+        winningCombo.map(index => 
+          document.getElementById(index).classList.add('winning')
+        );
       } else { 
         if (isBoardFull(board)) { // draw
           this.setState({
@@ -100,6 +104,10 @@ class TicTacToe extends Component {
           gameIsPlaying: false, 
           gameResult: 'Przegrałeś...'
         });
+        const winningCombo = getWinningCombo(board);
+        winningCombo.map(index => 
+          document.getElementById(index).classList.add('winning')
+        );
       } else {
         if (isBoardFull(board)) { // draw
           this.setState({
@@ -130,13 +138,13 @@ class TicTacToe extends Component {
               )
             })
           }
-          { this.state.gameResult }
-          { 
-            !this.state.gameIsPlaying
-            ? <PlayAgain playAgain={this.props.playAgain} />
-            : <h2>Grasz {this.props.playerMark}</h2>
-          }
         </GameBoard>
+        { this.state.gameResult }
+        { 
+          !this.state.gameIsPlaying
+          ? <PlayAgain playAgain={this.props.playAgain} />
+          : <h2>Grasz {this.props.playerMark}</h2>
+        }
       </div>
     );
   }

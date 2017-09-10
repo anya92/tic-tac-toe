@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
 
 import ChooseMark from './ChooseMark';
 import WhoFirst from './WhoFirst';
@@ -7,18 +7,29 @@ import TicTacToe from './TicTacToe';
 
 import { randomFirstPlayer } from '../helpers';
 
+
+injectGlobal`
+  @import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC&subset=latin-ext');
+  body {
+    font-family: 'Patrick Hand SC';
+  }
+`;
+
 const Header = styled.div`
-  font-family: monospace;
-  font-size: 40px;
-  color: khaki;
+  font-size: 3rem;
+  margin-top: 20px;
+  color: orangered;
   text-align: center;
 `;
 
 const Game = styled.div`
-  max-width: 100%;
-  padding-left: 15px;
-  padding-rigth: 15px;
-  background-color: mistyrose;
+  overflow: hidden;
+  padding-left: 18px;
+  padding-right: 18px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 `;
@@ -72,7 +83,7 @@ class App extends Component {
     return (
       <div>
         <Header>
-          Tic Tac Toe
+          Kółko i krzyżyk
         </Header>
         <Game>
           <ChooseMark 
