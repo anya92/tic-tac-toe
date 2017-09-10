@@ -63,7 +63,7 @@ export const aiMove = (board, computerMark, playerMark) => {
   }
   // try to take one of the corners, if they free
   move = chooseRandomMove(board, [0,2,6,8]);
-  if (move != null) {
+  if (move !== null) {
     return move;
   }
 
@@ -71,7 +71,7 @@ export const aiMove = (board, computerMark, playerMark) => {
   if (isEmpty(board, 4)) {
     return 5;
   }
-  
+
   // move on one of the sides
   return chooseRandomMove(board, [1,3,5,7]);
 }

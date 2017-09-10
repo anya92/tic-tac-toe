@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PlayAgain from './PlayAgain';
 
 import {
   aiMove,
@@ -59,7 +60,7 @@ class TicTacToe extends Component {
   }
 
   playerMove = index => {
-    const { playerMark, computerMark } = this.props;
+    const { playerMark } = this.props;
     let { board, gameIsPlaying, playerTurn } = this.state;
 
     if (gameIsPlaying && playerTurn && isEmpty(board, index)) {
@@ -130,6 +131,11 @@ class TicTacToe extends Component {
             })
           }
           { this.state.gameResult }
+          { 
+            !this.state.gameIsPlaying
+            ? <PlayAgain playAgain={this.props.playAgain} />
+            : <h2>Grasz {this.props.playerMark}</h2>
+          }
         </GameBoard>
       </div>
     );

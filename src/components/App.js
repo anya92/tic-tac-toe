@@ -47,7 +47,6 @@ class App extends Component {
           ? 'Zaczynasz pierwszy'
           : 'Zaczyna komputer';
       this.setState({ firstTurn, message });
-      console.log(message);
     }, 1000);
   }
 
@@ -58,6 +57,15 @@ class App extends Component {
         gameIsPlaying: true
       })
     }, 1000);
+  }
+
+  playAgain = () => {
+    this.setState({
+      gameIsPlaying: false,
+      playerMark: null,
+      firstTurn: null,
+      board: new Array(9).fill(' ')
+    });
   }
 
   render() {
@@ -86,6 +94,7 @@ class App extends Component {
                   firstTurn={this.state.firstTurn}
                   playerMark={this.state.playerMark}
                   computerMark={this.state.computerMark}
+                  playAgain={this.playAgain}
                 />
               )
             : <div></div>
