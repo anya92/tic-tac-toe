@@ -11,26 +11,44 @@ import {
 } from '../helpers';
 
 const GameBoard = styled.div`
+  margin-top: 20px;
   width: 350px;
   height: 350px;
+  position: relative;
 `;
 
 const Cell = styled.div`
-  width: calc(100% / 3 - 1px);
-  height: calc(100% / 3 - 1px);
+  width: calc(100% / 3 - 1.5px);
+  height: calc(100% / 3 - 1.5px);
+  font-size: 4.3rem;
   float: left;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 4rem;
   border-right: ${props => [0, 1, 3, 4, 6, 7].includes(props.id) 
-    ? '1px solid black' : 'none'};
+    ? '1.5px solid black' : 'none'};
   border-bottom: ${props => [0, 1, 2, 3, 4, 5].includes(props.id)
-    ? '1px solid black' : 'none'};
+    ? '1.5px solid black' : 'none'};
   &.winning {
     color: orangered;
   }  
+`;
+
+
+const Result = styled.div`
+  &:not(:empty) {
+    position: absolute;
+    background-color: white;
+    border: 2px solid black;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    font-size: 3rem;
+    text-align: center;
+  }
 `;
 
 class TicTacToe extends Component {
@@ -55,7 +73,7 @@ class TicTacToe extends Component {
         let computerMoveIndex = aiMove(board, computerMark, playerMark);
         board.splice(computerMoveIndex, 1, computerMark);
         this.setState({ board, playerTurn: true });
-      }, 500);
+      }, 300);
     }
   }
 
@@ -67,15 +85,17 @@ class TicTacToe extends Component {
       board.splice(index, 1, playerMark);
       this.setState({ board });
     
-      if (isWinner(board, playerMark)) {
-        this.setState({ // player won
-          gameIsPlaying: false,
-          gameResult: 'Wygrałeś!!!'
-        });
+      if (isWinner(board, playerMark)) { // player won
         const winningCombo = getWinningCombo(board);
         winningCombo.map(index => 
           document.getElementById(index).classList.add('winning')
         );
+        setTimeout(() => {
+          this.setState({ 
+            gameIsPlaying: false,
+            gameResult: 'Wygrałeś!!!'
+          });
+        }, 300);
       } else { 
         if (isBoardFull(board)) { // draw
           this.setState({
@@ -100,14 +120,16 @@ class TicTacToe extends Component {
       this.setState({ board });
     
       if (isWinner(board, computerMark)) { // computer won
-        this.setState({ 
-          gameIsPlaying: false, 
-          gameResult: 'Przegrałeś...'
-        });
         const winningCombo = getWinningCombo(board);
         winningCombo.map(index => 
           document.getElementById(index).classList.add('winning')
         );
+        setTimeout(() => {
+          this.setState({ 
+            gameIsPlaying: false,
+            gameResult: 'Przegrałeś...'
+          });
+        }, 300);
       } else {
         if (isBoardFull(board)) { // draw
           this.setState({
@@ -138,13 +160,15 @@ class TicTacToe extends Component {
               )
             })
           }
+          <Result>
+            { this.state.gameResult }
+          { 
+            !this.state.gameIsPlaying
+            ? <PlayAgain playAgain={this.props.playAgain} />
+            : null
+          }
+          </Result>
         </GameBoard>
-        { this.state.gameResult }
-        { 
-          !this.state.gameIsPlaying
-          ? <PlayAgain playAgain={this.props.playAgain} />
-          : <h2>Grasz {this.props.playerMark}</h2>
-        }
       </div>
     );
   }

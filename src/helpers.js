@@ -42,7 +42,7 @@ const chooseRandomMove = (board, listOfMoves) => {
 export const aiMove = (board, computerMark, playerMark) => { 
   let boardCopy, move;
   // check, if AI can win in the next move
-  for(let i = 1; i < 9; i++) {
+  for(let i = 0; i < 9; i++) {
     boardCopy = [...board];
     if (isEmpty(boardCopy, i)) {
       makeMove(boardCopy, computerMark, i);
@@ -52,7 +52,7 @@ export const aiMove = (board, computerMark, playerMark) => {
     }
   }
   // check, if player could win in the next move, and block them
-  for(let i = 1; i < 9; i++) {
+  for(let i = 0; i < 9; i++) {
     boardCopy = [...board];
     if (isEmpty(boardCopy, i)) {
       makeMove(boardCopy, playerMark, i);
@@ -69,7 +69,7 @@ export const aiMove = (board, computerMark, playerMark) => {
 
   // try to take center
   if (isEmpty(board, 4)) {
-    return 5;
+    return 4;
   }
 
   // move on one of the sides

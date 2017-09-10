@@ -10,7 +10,7 @@ const WhoFirst = ({ playerMark, firstTurn, getFirstTurn, message, removeMessageA
   // render if there is a playerMark but no firstTurn
   // then render message
   return (
-    <div>
+    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
       {
         playerMark && !firstTurn
         ? (

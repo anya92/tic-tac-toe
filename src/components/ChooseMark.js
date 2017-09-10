@@ -5,6 +5,7 @@ const Text = styled.div`
   font-size: 3rem;
   margin-bottom: 20px;
   text-align: center;
+  text-decoration: underline;
 `;
 
 const Buttons = styled.div`
@@ -13,7 +14,7 @@ const Buttons = styled.div`
 `;
 
 const Button = styled.button`
-  font-size: 4rem;
+  font-size: 4.3rem;
   font-family: 'Patrick Hand SC';
   background-color: transparent;
   margin: 40px;
@@ -24,6 +25,9 @@ const Button = styled.button`
     color: orangered;
     transform: scale(1.5);
   }
+  &:focus {
+    outline: none;
+  }
 `;
 
 
@@ -31,7 +35,7 @@ const ChooseMark = ({ playerMark, chooseMark }) => {
   // render only if there is no playerMark yet
   if (playerMark) return <div></div>;
   return (
-    <div>
+    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
       <Buttons>
         <Button onClick={() => chooseMark('X', 'O')}>X</Button>
         <Button onClick={() => chooseMark('O', 'X')}>O</Button>
