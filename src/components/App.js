@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import ChooseMark from './ChooseMark';
 import WhoFirst from './WhoFirst';
+import TicTacToe from './TicTacToe';
 
 import { randomFirstPlayer } from '../helpers';
 
@@ -11,6 +12,15 @@ const Header = styled.div`
   font-size: 40px;
   color: khaki;
   text-align: center;
+`;
+
+const Game = styled.div`
+  max-width: 100%;
+  padding-left: 15px;
+  padding-rigth: 15px;
+  background-color: mistyrose;
+  display: flex;
+  justify-content: center;
 `;
 
 class App extends Component {
@@ -56,17 +66,31 @@ class App extends Component {
         <Header>
           Tic Tac Toe
         </Header>
-        <ChooseMark 
-          playerMark={this.state.playerMark}
-          chooseMark={this.chooseMark}
-        />
-        <WhoFirst 
-          playerMark={this.state.playerMark}
-          firstTurn={this.state.firstTurn}
-          getFirstTurn={this.getFirstTurn}
-          message={this.state.message}
-          removeMessageAndStartGame={this.removeMessageAndStartGame}
-        />
+        <Game>
+          <ChooseMark 
+            playerMark={this.state.playerMark}
+            chooseMark={this.chooseMark}
+          />
+          <WhoFirst 
+            playerMark={this.state.playerMark}
+            firstTurn={this.state.firstTurn}
+            getFirstTurn={this.getFirstTurn}
+            message={this.state.message}
+            removeMessageAndStartGame={this.removeMessageAndStartGame}
+          />
+          {
+            this.state.gameIsPlaying
+            ? (
+                <TicTacToe
+                  gameIsPlaying={this.state.gameIsPlaying}
+                  firstTurn={this.state.firstTurn}
+                  playerMark={this.state.playerMark}
+                  computerMark={this.state.computerMark}
+                />
+              )
+            : <div></div>
+          }
+        </Game>
       </div>
     );
   }
