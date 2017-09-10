@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Text = styled.div`
   font-size: 3rem;
@@ -43,6 +44,11 @@ const ChooseMark = ({ playerMark, chooseMark }) => {
       <Text>Wybierz</Text>
     </div>
   );
+};
+
+ChooseMark.propTypes = {
+  playerMark: PropTypes.string,
+  chooseMark: PropTypes.func.isRequired
 };
 
 export default ChooseMark;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import PlayAgain from './PlayAgain';
+import PropTypes from 'prop-types';
 
+import PlayAgain from './PlayAgain';
 import {
   aiMove,
   isEmpty,
@@ -173,5 +174,13 @@ class TicTacToe extends Component {
     );
   }
 }
+
+TicTacToe.propTypes = {
+  gameIsPlaying: PropTypes.bool.isRequired,
+  firstTurn: PropTypes.string.isRequired,
+  playerMark: PropTypes.string.isRequired,
+  computerMark: PropTypes.string.isRequired,
+  playAgain: PropTypes.func.isRequired
+};
 
 export default TicTacToe;

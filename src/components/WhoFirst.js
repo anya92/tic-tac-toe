@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Text = styled.div`
   font-size: 2.5rem;
@@ -29,9 +30,16 @@ const WhoFirst = ({ playerMark, firstTurn, getFirstTurn, message, removeMessageA
             )
           : <div></div>
       }
-      
     </div>
   );
+};
+
+WhoFirst.propTypes = {
+  playerMark: PropTypes.string,
+  firstTurn: PropTypes.string,
+  getFirstTurn: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+  removeMessageAndStartGame: PropTypes.func.isRequired
 };
 
 export default WhoFirst;

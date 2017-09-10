@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Button = styled.button`
   margin-top: 20px;
@@ -23,6 +24,10 @@ const PlayAgain = ({ playAgain }) => {
       </Button>
     </div>
   );
+};
+
+PlayAgain.propTypes = {
+  playAgain: PropTypes.func.isRequired
 };
 
 export default PlayAgain;
